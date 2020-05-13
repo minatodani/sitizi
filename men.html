@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>男性</title>
+  </head>
+  <body>
+    <div class="game">
+      <p>あなた</p>
+      <input type="radio" name="janken" id="gu_btn" /><label>
+        <img src="./img/M-j_gu02.png" alt=""
+      /></label>
+
+      <input type="radio" name="janken" id="cho_btn" /><label>
+        <img src="./img/M-j_ch02.png" alt=""
+      /></label>
+
+      <input type="radio" name="janken" id="par_btn" /><label>
+        <img src="./img/M-j_pa02.png" alt=""
+      /></label>
+
+      <input type="button" class="janken" value="勝負！" />
+    </div>
+
+    <div id="com_hand">相手</div>
+    <div id="judgement">結果発表</div>
+
+    <div class="pict">
+      <div class="pict_inner">
+        <div class="a in"></div>
+        <div class="b in"></div>
+        <div class="c in"></div>
+        <div class="d in"></div>
+        <div class="e in"></div>
+        <div class="f in"></div>
+      </div>
+    </div>
+
+    <div class="modal js-modal">
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+        <h1>
+          おめでとうございます
+        </h1>
+        <a class="js-modal-close" href="/">閉じる</a>
+      </div>
+      <!--modal__inner-->
+    </div>
+    <!--modal-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      let panel = ["a", "b", "c", "d", "e", "f"];
+      let n = 6;
+      let pos = Math.floor(Math.random() * n);
+
+      function pa() {
+        $("." + panel[pos]).css("opacity", 0);
+        console.log(pos);
+        panel.splice(pos, 1);
+        console.log(panel);
+        n = n - 1;
+        console.log(n);
+        pos = Math.floor(Math.random() * n);
+        if (n == 0) {
+          $(".js-modal").fadeIn();
+        }
+      }
+
+      $(function () {
+        //ここに処理を追加
+
+        const result = ["グー", "チョキ", "パー"];
+
+        $("#gu_btn").on("click", function () {
+          //自分の手はグー
+          let rand = Math.floor(Math.random() * 3);
+          // 0コンピュータグー, 1コンピュータチョキ, 2コンピュータパー
+          // コンピュータの手を表示
+          $("#com_hand").text("コンピューターの手:" + result[rand]);
+          if (rand == 0) {
+            $("#judgement").text("あいこ");
+          } else if (rand == 1) {
+            $("#judgement").text("勝ち");
+            pa();
+          } else {
+            $("#judgement").text("負け");
+          }
+        });
+
+        $("#cho_btn").on("click", function () {
+          //自分の手はグー
+          let rand = Math.floor(Math.random() * 3);
+          // 0コンピュータグー, 1コンピュータチョキ, 2コンピュータパー
+          // コンピュータの手を表示
+          $("#com_hand").text("コンピューターの手:" + result[rand]);
+          if (rand == 0) {
+            $("#judgement").text("負け");
+          } else if (rand == 1) {
+            $("#judgement").text("あいこ");
+          } else {
+            $("#judgement").text("勝ち");
+            pa();
+          }
+        });
+
+        $("#par_btn").on("click", function () {
+          //自分の手はグー
+          let rand = Math.floor(Math.random() * 3);
+          // 0コンピュータグー, 1コンピュータチョキ, 2コンピュータパー
+          // コンピュータの手を表示
+          $("#com_hand").text("コンピューターの手:" + result[rand]);
+          if (rand == 0) {
+            $("#judgement").text("勝ち");
+            pa();
+          } else if (rand == 1) {
+            $("#judgement").text("負け");
+          } else {
+            $("#judgement").text("あいこ");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけん</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <div class="sex">
+    <div class="question">
+      あなたの性別はどちらですか？
+    </div>
+    <!-- <form  method="post" enctype="text/plain"     id="order" target="_blank"> -->
+      <div class="choice">
+        <input type="radio" name="gender" value="male" id="men">男性
+        <input type="radio" name="gender" value="female" id="women">女性
+      </div>
+      <div>
+        <button  formtarget="_self" id="btn">送信</button>
+      </div>
+    <!-- </form> -->
+  </div>
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script> 
+  // $(function () {
+  // if(gender == male){
+  // location.href = 'linked.html';men.html
+  // }else {
+  // location.href = women.html
+  // }
+  
+  
+  
+  
+  
+  // });
+  document.getElementById('btn').addEventListener('click',function(e){
+    let element = document.getElementById( "men" ) ;
+
+    if ( element.checked ) {
+      // チェックされている
+      window.location.href = "men.html"; // 通常の遷移
+    } else {
+      // チェックされていない
+      window.location.href = "women.html"; // 通常の遷移
+    }
+  },false);
+
+
+
+  </script>
+</body>
+</html>
